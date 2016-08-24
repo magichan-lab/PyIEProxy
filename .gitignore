@@ -1,0 +1,12 @@
+build
+dist
+*.egg-info
+*.pyc
+*/*.pyc
+*/*/*.pyc
+__pycache__
+*/__pycache__
+*/*/__pycache__
+.cache
+.coverage
+.tox
