@@ -10,7 +10,11 @@ except ImportError:
 
 from logging import getLogger, StreamHandler, DEBUG, ERROR
 
-from ieproxy import IEProxy
+try:
+    from ieproxy import IEProxy
+except OSError as e:
+    import sys
+    sys.exit(e)
 
 
 PROG_NAME = 'ie_proxy'
