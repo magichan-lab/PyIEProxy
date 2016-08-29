@@ -14,7 +14,7 @@ try:
     from ieproxy import IEProxy
 except OSError as e:
     import sys
-    sys.exit(e)
+    sys.exit()
 
 
 PROG_NAME = 'ie_proxy'
