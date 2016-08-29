@@ -16,6 +16,10 @@ class IEProxy:
         self.network_reg = reg.OpenKey(
             reg.HKEY_CURRENT_USER, IEProxy.KEY_NAME, 0, reg.KEY_ALL_ACCESS)
 
+    def close(self):
+        if self.network_reg:
+            reg.CloseKey(self.network_reg)
+
     def set_proxy(self, proxy):
         reg.SetValueEx(self.network_reg, 'ProxyServer', 0, reg.REG_SZ, proxy)
 
