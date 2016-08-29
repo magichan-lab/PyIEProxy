@@ -1,4 +1,4 @@
-#-*- config: utf-8 -*-
+# -*- config: utf-8 -*-
 
 try:
     import winreg as reg
