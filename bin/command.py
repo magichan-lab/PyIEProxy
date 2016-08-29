@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import argparse
 
 try:
@@ -13,8 +14,7 @@ from logging import getLogger, StreamHandler, DEBUG, ERROR
 try:
     from ieproxy import IEProxy
 except OSError as e:
-    import sys
-    sys.exit()
+    unsupported = True
 
 
 PROG_NAME = 'ie_proxy'
@@ -28,6 +28,8 @@ logger.addHandler(handler)
 
 def proxy_on(**args):
     logger.debug("[PROXY ON]")
+    if unsupported:
+        return
     proxy = IEProxy()
     if 'proxy' in args.keys() and args['proxy']:
         proxy.set_proxy(args['proxy'])
@@ -37,6 +39,8 @@ def proxy_on(**args):
 
 def proxy_off(**args):
     logger.debug("[PROXY OFF]")
+    if unsupported:
+        return
     proxy = IEProxy()
     proxy.disable()
     print_info(proxy)
@@ -44,6 +48,8 @@ def proxy_off(**args):
 
 def proxy_toggle(**args):
     logger.debug("[PROXY TOGGLE]")
+    if unsupported:
+        return
     proxy = IEProxy()
     enable = proxy.is_enable()
     if enable:
@@ -55,6 +61,8 @@ def proxy_toggle(**args):
 
 def proxy_state(**args):
     logger.debug("[PROXY STATE]")
+    if unsupported:
+        return
     proxy = IEProxy()
     print("PROXY SERVER : {}".format(proxy.get_proxy()))
     print("PROXY ENABLE : {}".format('ON' if proxy.is_enable() else 'OFF'))
@@ -62,6 +70,8 @@ def proxy_state(**args):
 
 def proxy_info(**args):
     logger.debug("[PROXY INFO]")
+    if unsupported:
+        return
     print_info(IEProxy())
 
 
@@ -70,6 +80,8 @@ def print_info(proxy):
 
 
 def main():
+    if unsupported:
+        sys.exit()
     cmd_list = {'on': proxy_on,
                 'off': proxy_off,
                 'toggle': proxy_toggle,
