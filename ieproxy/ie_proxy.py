@@ -3,7 +3,10 @@
 try:
     import winreg as reg
 except ImportError:
-    import _winreg as reg
+    try:
+        import _winreg as reg
+    except ImportError:
+        raise OSError()
 
 
 class IEProxy:
