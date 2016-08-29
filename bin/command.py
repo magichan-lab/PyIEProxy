@@ -15,7 +15,8 @@ try:
     from ieproxy import IEProxy
 except OSError as e:
     unsupported = True
-
+else:
+    unsupported = False
 
 PROG_NAME = 'ie_proxy'
 
